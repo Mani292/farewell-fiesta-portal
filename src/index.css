@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,33 +6,33 @@
 
 @layer base {
   :root {
-    --background: 270 30% 4%;
-    --foreground: 300 15% 92%;
+    --background: 260 35% 5%;
+    --foreground: 50 30% 92%;
 
-    --card: 270 25% 8%;
-    --card-foreground: 300 15% 92%;
+    --card: 260 30% 9%;
+    --card-foreground: 50 30% 92%;
 
-    --popover: 270 25% 8%;
-    --popover-foreground: 300 15% 92%;
+    --popover: 260 30% 9%;
+    --popover-foreground: 50 30% 92%;
 
-    --primary: 320 80% 65%;
-    --primary-foreground: 270 30% 4%;
+    --primary: 330 85% 60%;
+    --primary-foreground: 260 35% 5%;
 
-    --secondary: 270 20% 14%;
-    --secondary-foreground: 300 15% 85%;
+    --secondary: 260 25% 14%;
+    --secondary-foreground: 50 20% 85%;
 
-    --muted: 270 20% 16%;
-    --muted-foreground: 300 10% 55%;
+    --muted: 260 20% 18%;
+    --muted-foreground: 50 10% 55%;
 
-    --accent: 35 85% 60%;
-    --accent-foreground: 270 30% 4%;
+    --accent: 45 90% 55%;
+    --accent-foreground: 260 35% 5%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 320 30% 20%;
-    --input: 270 20% 16%;
-    --ring: 320 80% 65%;
+    --border: 330 30% 20%;
+    --input: 260 20% 16%;
+    --ring: 330 85% 60%;
 
     --radius: 0.75rem;
 
@@ -55,6 +55,7 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
   }
 }
 
@@ -67,46 +68,68 @@
     font-family: 'Lora', serif;
   }
 
+  .font-handwritten {
+    font-family: 'Dancing Script', cursive;
+  }
+
   .text-rose-gradient {
-    background: linear-gradient(135deg, hsl(320, 80%, 65%), hsl(35, 85%, 60%), hsl(320, 60%, 75%));
+    background: linear-gradient(135deg, hsl(330, 85%, 60%) 0%, hsl(45, 90%, 55%) 50%, hsl(330, 70%, 70%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
-  .text-glow {
-    text-shadow: 0 0 40px hsla(320, 80%, 65%, 0.5), 0 0 80px hsla(320, 80%, 65%, 0.2);
+  .text-gold-gradient {
+    background: linear-gradient(135deg, hsl(45, 90%, 55%), hsl(35, 85%, 50%), hsl(45, 90%, 65%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .glow-rose {
-    box-shadow: 0 0 30px hsla(320, 80%, 65%, 0.15), 0 0 60px hsla(320, 80%, 65%, 0.08), inset 0 1px 0 hsla(320, 80%, 65%, 0.1);
+  .text-glow-pink {
+    text-shadow: 0 0 30px hsla(330, 85%, 60%, 0.6), 0 0 60px hsla(330, 85%, 60%, 0.3), 0 0 100px hsla(330, 85%, 60%, 0.1);
   }
 
-  .glow-rose-strong {
-    box-shadow: 0 0 40px hsla(320, 80%, 65%, 0.25), 0 0 80px hsla(320, 80%, 65%, 0.1), 0 0 120px hsla(35, 85%, 60%, 0.05);
+  .text-glow-gold {
+    text-shadow: 0 0 30px hsla(45, 90%, 55%, 0.5), 0 0 60px hsla(45, 90%, 55%, 0.2);
+  }
+
+  .glow-pink {
+    box-shadow: 0 0 25px hsla(330, 85%, 60%, 0.15), 0 0 50px hsla(330, 85%, 60%, 0.08);
+  }
+
+  .glow-pink-strong {
+    box-shadow: 0 0 30px hsla(330, 85%, 60%, 0.25), 0 0 60px hsla(330, 85%, 60%, 0.12), 0 0 100px hsla(330, 85%, 60%, 0.05);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 25px hsla(45, 90%, 55%, 0.15), 0 0 50px hsla(45, 90%, 55%, 0.08);
   }
 
   .shimmer {
-    background: linear-gradient(
-      110deg,
-      transparent 25%,
-      hsla(320, 80%, 65%, 0.08) 37%,
-      transparent 63%
-    );
+    background: linear-gradient(110deg, transparent 25%, hsla(330, 85%, 60%, 0.06) 37%, transparent 63%);
     background-size: 200% 100%;
     animation: shimmer 3s ease-in-out infinite;
   }
 
   .glass {
-    background: hsla(270, 25%, 8%, 0.6);
+    background: hsla(260, 30%, 9%, 0.65);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
   }
 
   .glass-strong {
-    background: hsla(270, 25%, 10%, 0.8);
+    background: hsla(260, 30%, 8%, 0.85);
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
+  }
+
+  .border-glow {
+    border: 1px solid hsla(330, 85%, 60%, 0.25);
+  }
+
+  .photo-frame {
+    box-shadow: 0 4px 30px hsla(330, 85%, 60%, 0.15), 0 0 0 1px hsla(330, 85%, 60%, 0.1), inset 0 1px 0 hsla(330, 85%, 60%, 0.1);
   }
 }
 
@@ -117,18 +140,13 @@
 
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  50% { transform: translateY(-10px); }
 }
 
-@keyframes float-slow {
+@keyframes float-gentle {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-8px) rotate(1deg); }
-  66% { transform: translateY(-4px) rotate(-1deg); }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(40px); }
-  to { opacity: 1; transform: translateY(0); }
+  25% { transform: translateY(-6px) rotate(0.5deg); }
+  75% { transform: translateY(-3px) rotate(-0.5deg); }
 }
 
 @keyframes sparkle {
@@ -136,9 +154,24 @@
   50% { opacity: 1; transform: scale(1.3); }
 }
 
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsla(330, 85%, 60%, 0.1); }
+  50% { box-shadow: 0 0 40px hsla(330, 85%, 60%, 0.3), 0 0 80px hsla(330, 85%, 60%, 0.1); }
+}
+
 @keyframes pulse-border {
-  0%, 100% { border-color: hsla(320, 80%, 65%, 0.2); }
-  50% { border-color: hsla(320, 80%, 65%, 0.5); }
+  0%, 100% { border-color: hsla(330, 85%, 60%, 0.15); }
+  50% { border-color: hsla(330, 85%, 60%, 0.45); }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
 
 @keyframes rotate-slow {
@@ -146,26 +179,35 @@
   to { transform: rotate(360deg); }
 }
 
-@keyframes gradient-shift {
+@keyframes gradient-x {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
 
-@keyframes reveal-line {
-  from { width: 0; }
-  to { width: 100%; }
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  15% { transform: scale(1.15); }
+  30% { transform: scale(1); }
+  45% { transform: scale(1.1); }
 }
 
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px hsla(320, 80%, 65%, 0.1), 0 0 40px hsla(320, 80%, 65%, 0.05); }
-  50% { box-shadow: 0 0 40px hsla(320, 80%, 65%, 0.25), 0 0 80px hsla(320, 80%, 65%, 0.1); }
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes wave {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  75% { transform: rotate(-10deg); }
 }
 
 .animate-float { animation: float 4s ease-in-out infinite; }
-.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
-.animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; }
+.animate-float-gentle { animation: float-gentle 6s ease-in-out infinite; }
 .animate-sparkle { animation: sparkle 2s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
 .animate-pulse-border { animation: pulse-border 3s ease-in-out infinite; }
 .animate-rotate-slow { animation: rotate-slow 20s linear infinite; }
-.animate-gradient-shift { animation: gradient-shift 4s ease-in-out infinite; background-size: 200% 200%; }
-.animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+.animate-gradient-x { animation: gradient-x 4s ease-in-out infinite; background-size: 200% 200%; }
+.animate-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+.animate-wave { animation: wave 2s ease-in-out infinite; }

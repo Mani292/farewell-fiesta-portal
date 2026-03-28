@@ -1,56 +1,52 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import StarField from "@/components/StarField";
 import PhotoGallery from "@/components/PhotoGallery";
 import EventDetails from "@/components/EventDetails";
 import CountdownTimer from "@/components/CountdownTimer";
+import MessageCard from "@/components/MessageCard";
 
 const FloatingPetal = ({ delay, x, size }: { delay: number; x: string; size: number }) => (
   <motion.div
-    initial={{ opacity: 0, y: -20, rotate: 0 }}
-    animate={{ 
-      opacity: [0, 0.6, 0],
-      y: ["-5vh", "105vh"],
-      rotate: [0, 360],
-      x: [0, 30, -20, 15]
+    initial={{ opacity: 0, y: -20 }}
+    animate={{
+      opacity: [0, 0.5, 0.3, 0],
+      y: ["-5vh", "110vh"],
+      x: [0, 25, -15, 20, 0],
+      rotate: [0, 45, 90, 180, 270, 360],
     }}
-    transition={{ 
-      duration: 12 + Math.random() * 8,
+    transition={{
+      duration: 14 + Math.random() * 6,
       delay,
       repeat: Infinity,
-      ease: "linear"
+      ease: "linear",
     }}
     className="fixed z-[5] pointer-events-none"
     style={{ left: x }}
   >
-    <span style={{ fontSize: size }} className="opacity-40">🌸</span>
+    <span style={{ fontSize: size }}>🌸</span>
   </motion.div>
 );
 
 const Index = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll();
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
-
   return (
-    <div ref={containerRef} className="relative min-h-screen overflow-x-hidden bg-background">
+    <div className="relative min-h-screen overflow-x-hidden bg-background">
       <StarField />
-      
+
       {/* Floating petals */}
-      {[...Array(8)].map((_, i) => (
-        <FloatingPetal 
-          key={i} 
-          delay={i * 1.8} 
-          x={`${10 + Math.random() * 80}%`} 
-          size={12 + Math.random() * 14}
+      {[...Array(6)].map((_, i) => (
+        <FloatingPetal
+          key={i}
+          delay={i * 2.2}
+          x={`${8 + i * 15}%`}
+          size={10 + Math.random() * 10}
         />
       ))}
 
-      {/* Ambient gradient blobs */}
+      {/* Ambient glow orbs */}
       <div className="fixed inset-0 z-[1] pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/5 rounded-full blur-[120px] animate-float-slow" />
-        <div className="absolute bottom-1/3 -right-32 w-80 h-80 bg-accent/5 rounded-full blur-[100px] animate-float-slow" style={{ animationDelay: "3s" }} />
+        <div className="absolute top-1/4 -left-20 w-60 h-60 bg-primary/6 rounded-full blur-[100px] animate-float-gentle" />
+        <div className="absolute bottom-1/3 -right-20 w-52 h-52 bg-accent/5 rounded-full blur-[80px] animate-float-gentle" style={{ animationDelay: "3s" }} />
+        <div className="absolute top-2/3 left-1/4 w-40 h-40 bg-primary/4 rounded-full blur-[80px] animate-float-gentle" style={{ animationDelay: "5s" }} />
       </div>
 
       <div className="relative z-10">
@@ -59,179 +55,272 @@ const Index = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-center py-3 border-b border-primary/15 shimmer backdrop-blur-sm"
+          className="text-center py-3 border-b border-primary/15 shimmer"
         >
-          <p className="text-[10px] md:text-xs tracking-[0.4em] text-primary font-medium uppercase">
-            ✦ A Personal Invitation For You ✦
+          <p className="text-[9px] md:text-xs tracking-[0.3em] text-primary font-medium uppercase">
+            ✦ A Personal Invitation For You, Niharika Akka ✦
           </p>
         </motion.div>
 
-        {/* Hero Section */}
-        <motion.section 
-          style={{ opacity: heroOpacity, scale: heroScale }}
-          className="flex flex-col items-center justify-center px-4 pt-20 pb-16 md:pt-28 md:pb-20 min-h-[85vh]"
-        >
-          {/* Decorative top element */}
+        {/* ─── HERO SECTION ─── */}
+        <section className="flex flex-col items-center justify-center px-4 pt-14 pb-10 min-h-[90vh]">
+          {/* Rose icon */}
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.8, type: "spring" }}
-            className="mb-6"
+            transition={{ delay: 0.2, duration: 0.6, type: "spring" }}
+            className="mb-4"
           >
-            <div className="w-16 h-16 rounded-full border border-primary/30 flex items-center justify-center animate-float">
-              <span className="text-2xl">🌹</span>
+            <div className="w-14 h-14 rounded-full border border-primary/25 flex items-center justify-center animate-float glow-pink">
+              <span className="text-xl animate-heartbeat">🌹</span>
             </div>
           </motion.div>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="font-elegant italic text-base md:text-lg text-muted-foreground mb-3 tracking-wide"
+            transition={{ delay: 0.4, duration: 0.7 }}
+            className="font-elegant italic text-sm md:text-base text-muted-foreground mb-2 tracking-wide"
           >
-            Dear Akka, you are warmly invited to our
+            Dear Niharika Akka, you are warmly invited to our
           </motion.p>
 
+          {/* FAREWELL - Big fancy text */}
           <motion.div
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.6, duration: 1.2, type: "spring", bounce: 0.4 }}
-            className="relative"
+            transition={{ delay: 0.6, duration: 1, type: "spring", bounce: 0.35 }}
+            className="relative my-2"
           >
-            {/* Glow behind text */}
-            <div className="absolute inset-0 blur-3xl bg-primary/10 rounded-full scale-150" />
-            <h1 className="relative font-display text-8xl md:text-[10rem] lg:text-[12rem] text-rose-gradient text-glow leading-none">
+            <div className="absolute inset-0 blur-[50px] bg-primary/15 rounded-full scale-150" />
+            <h1 className="relative font-display text-7xl md:text-9xl text-rose-gradient text-glow-pink leading-none">
               Farewell
             </h1>
           </motion.div>
 
+          {/* Celebration line */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className="flex items-center gap-3 mt-4 mb-6"
+            transition={{ delay: 0.9, duration: 0.8 }}
+            className="flex items-center gap-2.5 mt-3 mb-5"
           >
-            <div className="w-12 h-px bg-gradient-to-r from-transparent to-primary/50" />
-            <span className="tracking-[0.6em] text-[11px] text-primary/70 uppercase font-light">celebration</span>
-            <div className="w-12 h-px bg-gradient-to-l from-transparent to-primary/50" />
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "2.5rem" }}
+              transition={{ delay: 1.1, duration: 0.8 }}
+              className="h-px bg-gradient-to-r from-transparent to-primary/50"
+            />
+            <span className="tracking-[0.5em] text-[10px] text-primary/60 uppercase font-light">celebration</span>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "2.5rem" }}
+              transition={{ delay: 1.1, duration: 0.8 }}
+              className="h-px bg-gradient-to-l from-transparent to-primary/50"
+            />
           </motion.div>
 
+          {/* Senior name */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
+            transition={{ delay: 1.1, duration: 0.8 }}
             className="text-center"
           >
-            <p className="font-elegant italic text-sm text-primary/60 mb-2 tracking-wider">
+            <p className="font-elegant italic text-xs text-primary/50 mb-1.5 tracking-wider">
               Celebrating & Honouring
             </p>
-            <h2 className="font-elegant text-2xl md:text-4xl font-bold tracking-[0.15em] text-foreground mb-1.5">
-              LEGACY 2K26
-            </h2>
-            <p className="tracking-[0.35em] text-[10px] text-muted-foreground uppercase">
+            <motion.h2
+              initial={{ opacity: 0, letterSpacing: "0.5em" }}
+              animate={{ opacity: 1, letterSpacing: "0.12em" }}
+              transition={{ delay: 1.3, duration: 1.2 }}
+              className="font-handwritten text-2xl md:text-3xl font-bold text-gold-gradient text-glow-gold mb-1"
+            >
+              SURADA SRI VENKATA NIHARIKA
+            </motion.h2>
+            <p className="tracking-[0.3em] text-[9px] text-muted-foreground uppercase mt-1">
               Aditya University · Information Technology
             </p>
+          </motion.div>
+
+          {/* Decorative element */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.6, duration: 0.8 }}
+            className="mt-6 flex items-center gap-3 text-primary/30"
+          >
+            <span className="animate-sparkle text-xs">✦</span>
+            <span className="text-lg animate-float">✿</span>
+            <span className="animate-sparkle text-xs" style={{ animationDelay: "1s" }}>✦</span>
           </motion.div>
 
           {/* Scroll indicator */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 2, duration: 1 }}
-            className="mt-16"
+            transition={{ delay: 2.2, duration: 1 }}
+            className="mt-10"
           >
             <motion.div
-              animate={{ y: [0, 8, 0] }}
+              animate={{ y: [0, 6, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="flex flex-col items-center gap-2 text-muted-foreground/40"
+              className="flex flex-col items-center gap-1.5 text-muted-foreground/30"
             >
-              <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
-              <div className="w-px h-8 bg-gradient-to-b from-primary/30 to-transparent" />
+              <span className="text-[8px] tracking-[0.3em] uppercase">Scroll down</span>
+              <div className="w-px h-6 bg-gradient-to-b from-primary/25 to-transparent" />
             </motion.div>
           </motion.div>
-        </motion.section>
+        </section>
 
-        {/* Countdown Section */}
-        <section className="px-4 pb-20">
+        {/* ─── COUNTDOWN ─── */}
+        <section className="pb-16">
           <CountdownTimer targetDate="2026-03-31T10:00:00" />
         </section>
 
-        {/* Event Details */}
-        <section className="px-4 pb-20">
+        {/* ─── EVENT DETAILS ─── */}
+        <section className="pb-16">
           <EventDetails />
         </section>
 
-        {/* Divider */}
-        <div className="flex justify-center py-4">
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            whileInView={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="w-32 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
-          />
-        </div>
+        {/* ─── DIVIDER ─── */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="flex justify-center py-2"
+        >
+          <div className="w-28 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        </motion.div>
 
-        {/* Memories Section */}
-        <section className="px-4 py-16">
+        {/* ─── MESSAGES SECTION ─── */}
+        <section className="px-4 py-14">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
+            <p className="font-display text-3xl text-rose-gradient mb-2">From our hearts</p>
+            <div className="w-14 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent mx-auto" />
+          </motion.div>
+
+          <div className="max-w-sm mx-auto space-y-4">
+            <MessageCard
+              emoji="🌟"
+              quote="Every end is a new beginning, and for us, that beginning is finally getting to meet you! We invite you to a special farewell ceremony to celebrate your achievements and to share a first (and fond) memory together."
+              attribution="New Beginnings"
+              delay={0.1}
+            />
+            <MessageCard
+              emoji="💫"
+              quote="To a senior sister we've looked forward to meeting: they say the two hardest things to say are 'hello' for the first time and 'goodbye' for the last. Please join us for your farewell party so we can do both with style, warmth, and the respect you deserve."
+              attribution="Hello & Goodbye"
+              delay={0.2}
+            />
+            <MessageCard
+              emoji="🌹"
+              quote="A farewell is necessary before we can meet again, and meeting again is certain for those who are friends."
+              attribution="A Meaningful Quote"
+              delay={0.3}
+            />
+          </div>
+        </section>
+
+        {/* ─── DIVIDER ─── */}
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          whileInView={{ opacity: 1, scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="flex justify-center py-2"
+        >
+          <div className="w-28 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+        </motion.div>
+
+        {/* ─── MEMORIES / PHOTOS ─── */}
+        <section className="py-14">
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="font-display text-5xl md:text-6xl text-rose-gradient mb-3"
+              className="font-display text-4xl text-rose-gradient mb-2"
             >
               Memories we cherish
             </motion.p>
-            <p className="text-xs tracking-[0.3em] text-muted-foreground uppercase">moments that last forever</p>
-            <div className="w-20 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent mx-auto mt-3" />
+            <p className="text-[9px] tracking-[0.25em] text-muted-foreground uppercase">moments that last forever</p>
+            <div className="w-14 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent mx-auto mt-2" />
           </motion.div>
           <PhotoGallery />
         </section>
 
-        {/* Footer / Message */}
-        <section className="px-4 pb-24 pt-12">
+        {/* ─── FOOTER MESSAGE ─── */}
+        <section className="px-4 pb-20 pt-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center max-w-md mx-auto"
+            className="text-center max-w-sm mx-auto"
           >
-            <div className="relative glass rounded-2xl p-8 border border-primary/15 glow-rose">
-              <div className="absolute top-4 left-4 text-primary/20 text-4xl font-display">"</div>
-              <div className="absolute bottom-4 right-4 text-primary/20 text-4xl font-display">"</div>
-              
-              <p className="tracking-[0.2em] text-[10px] text-muted-foreground uppercase mb-5">
+            <div className="relative glass rounded-2xl p-6 border border-primary/15 glow-pink">
+              <div className="absolute top-2 left-3 text-primary/15 text-2xl font-display">"</div>
+              <div className="absolute bottom-2 right-3 text-primary/15 text-2xl font-display">"</div>
+
+              <p className="tracking-[0.15em] text-[9px] text-muted-foreground uppercase mb-4">
                 Aditya University
               </p>
-              <p className="font-elegant italic text-base md:text-lg leading-relaxed text-foreground/80">
+              <p className="font-elegant italic text-sm leading-relaxed text-foreground/80">
                 You have been our inspiration, our guide,
                 and our greatest senior sister. This farewell is our
-                way of saying — <span className="text-primary">thank you for everything</span>. 💕
+                way of saying — <span className="text-primary font-semibold">thank you for everything</span>, Niharika Akka. 💕
               </p>
-              <div className="flex justify-center gap-5 mt-8 text-primary/50">
+              <div className="flex justify-center gap-4 mt-6 text-primary/40">
                 <span className="animate-sparkle">🌸</span>
                 <span className="animate-sparkle" style={{ animationDelay: "0.5s" }}>✦</span>
                 <span className="animate-sparkle" style={{ animationDelay: "1s" }}>🌸</span>
               </div>
             </div>
-            
-            <motion.p
+
+            <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
+              transition={{ duration: 1, delay: 0.3 }}
               viewport={{ once: true }}
-              className="font-display text-3xl md:text-4xl text-primary/70 mt-10"
+              className="mt-8"
             >
-              With love, your juniors ♥
-            </motion.p>
+              <p className="font-display text-2xl text-primary/60 mb-1">
+                With love & respect ♥
+              </p>
+              <p className="font-handwritten text-lg text-accent/70">
+                — Manisanthan & Juniors
+              </p>
+            </motion.div>
+
+            {/* Final sparkle row */}
+            <div className="flex justify-center gap-3 mt-8 text-primary/20">
+              {[...Array(5)].map((_, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.5 + i * 0.15 }}
+                  viewport={{ once: true }}
+                  className="animate-sparkle text-xs"
+                  style={{ animationDelay: `${i * 0.4}s` }}
+                >
+                  ✦
+                </motion.span>
+              ))}
+            </div>
           </motion.div>
         </section>
       </div>
