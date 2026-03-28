@@ -15,25 +15,25 @@ const photos = [
 
 const PhotoGallery = () => {
   return (
-    <div className="max-w-sm mx-auto px-4 space-y-5">
-      {/* Hero photo - larger */}
+    <div className="max-w-sm mx-auto px-4 space-y-4">
+      {/* Hero photo */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.92 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, type: "spring" }}
-        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.7, type: "spring" }}
+        viewport={{ once: true, margin: "-40px" }}
         className="relative group"
       >
-        <div className="absolute -inset-1.5 rounded-2xl bg-gradient-to-br from-primary/30 via-accent/15 to-primary/20 blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-700" />
-        <div className="relative overflow-hidden rounded-2xl border border-primary/25 photo-frame animate-pulse-border">
+        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-primary/25 via-accent/12 to-primary/15 blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-700" />
+        <div className="relative overflow-hidden rounded-2xl border border-primary/20 photo-frame animate-pulse-border">
           <img
             src={photos[0].src}
-            alt="Our beloved Niharika akka"
-            className="w-full h-80 object-cover object-top"
+            alt="Niharika Akka"
+            className="w-full h-80 object-cover object-center block"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
           <motion.div
-            initial={{ opacity: 0, y: 15 }}
+            initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             viewport={{ once: true }}
@@ -51,31 +51,26 @@ const PhotoGallery = () => {
         {photos.slice(1).map((photo, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 40, rotate: (i % 2 === 0 ? -2 : 2) }}
-            whileInView={{ opacity: 1, y: 0, rotate: (i % 2 === 0 ? -0.5 : 0.5) }}
-            whileHover={{ rotate: 0, scale: 1.03 }}
-            transition={{ duration: 0.6, delay: i * 0.12, type: "spring" }}
-            viewport={{ once: true, margin: "-30px" }}
+            initial={{ opacity: 0, y: 30, rotate: (i % 2 === 0 ? -2 : 2) }}
+            whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+            transition={{ duration: 0.5, delay: i * 0.1, type: "spring" }}
+            viewport={{ once: true, margin: "-20px" }}
             className="relative group"
           >
-            <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-br from-primary/20 via-transparent to-accent/15 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-sm" />
-            <div className="relative overflow-hidden rounded-xl border border-primary/15 group-hover:border-primary/40 photo-frame transition-colors duration-300">
+            <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-br from-primary/15 to-accent/10 opacity-0 group-hover:opacity-100 transition-all duration-400 blur-sm" />
+            <div className="relative overflow-hidden rounded-xl border border-primary/15 group-hover:border-primary/35 photo-frame transition-colors duration-300">
               <img
                 src={photo.src}
                 alt={photo.caption}
-                className="w-full h-44 object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                className="w-full h-48 object-cover object-center block"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent opacity-50 group-hover:opacity-80 transition-opacity" />
-              {/* Caption overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-2 translate-y-full group-hover:translate-y-0 transition-transform duration-400">
-                <p className="font-elegant text-xs text-center text-foreground/90 italic">
+              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-40 group-hover:opacity-70 transition-opacity" />
+              {/* Caption on hover */}
+              <div className="absolute bottom-0 left-0 right-0 p-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <p className="font-elegant text-xs text-center text-foreground/80 italic">
                   {photo.caption}
                 </p>
-              </div>
-              {/* Corner sparkle */}
-              <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
-                <span className="text-primary text-sm animate-sparkle">✦</span>
               </div>
             </div>
           </motion.div>
