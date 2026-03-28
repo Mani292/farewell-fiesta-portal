@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Calendar, Clock, MapPin, Music, Utensils } from "lucide-react";
+import { Calendar, Clock, MapPin } from "lucide-react";
 
 const details = [
   { icon: Calendar, label: "DATE", value: "31st March, 2026" },
@@ -11,6 +11,7 @@ const activities = [
   { icon: "💃", label: "Dance" },
   { icon: "🎵", label: "Music" },
   { icon: "🍽️", label: "Lunch" },
+  { icon: "🎉", label: "Fun" },
 ];
 
 const EventDetails = () => {
@@ -22,7 +23,7 @@ const EventDetails = () => {
       viewport={{ once: true }}
       className="max-w-lg mx-auto"
     >
-      <div className="rounded-2xl border border-primary/30 bg-card/60 backdrop-blur-md p-6 md:p-8 glow-gold">
+      <div className="rounded-2xl border border-primary/30 bg-card/60 backdrop-blur-md p-6 md:p-8 glow-gold animate-pulse-glow">
         <div className="space-y-6">
           {details.map((d, i) => (
             <motion.div
@@ -40,7 +41,7 @@ const EventDetails = () => {
                 <p className="text-xs tracking-[0.2em] text-muted-foreground font-medium">
                   {d.label}
                 </p>
-                <p className="font-display text-lg text-foreground whitespace-pre-line">
+                <p className="font-elegant text-lg text-foreground whitespace-pre-line">
                   {d.value}
                 </p>
               </div>
