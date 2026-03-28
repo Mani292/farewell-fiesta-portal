@@ -16,22 +16,23 @@ const StarField = () => {
     resize();
     window.addEventListener("resize", resize);
 
-    const stars = Array.from({ length: 120 }, () => ({
+    const particles = Array.from({ length: 80 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
-      r: Math.random() * 1.5 + 0.3,
+      r: Math.random() * 2 + 0.5,
       speed: Math.random() * 0.5 + 0.2,
       phase: Math.random() * Math.PI * 2,
+      hue: Math.random() > 0.5 ? 340 : 25,
     }));
 
     let frame: number;
     const draw = (t: number) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      stars.forEach((s) => {
-        const opacity = 0.3 + 0.5 * Math.sin(t * 0.001 * s.speed + s.phase);
+      particles.forEach((s) => {
+        const opacity = 0.2 + 0.4 * Math.sin(t * 0.001 * s.speed + s.phase);
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(43, 60%, 70%, ${opacity})`;
+        ctx.fillStyle = `hsla(${s.hue}, 50%, 70%, ${opacity})`;
         ctx.fill();
       });
       frame = requestAnimationFrame(draw);
@@ -48,7 +49,7 @@ const StarField = () => {
     <canvas
       ref={canvasRef}
       className="pointer-events-none fixed inset-0 z-0"
-      style={{ opacity: 0.6 }}
+      style={{ opacity: 0.5 }}
     />
   );
 };
