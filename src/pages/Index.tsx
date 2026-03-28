@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import StarField from "@/components/StarField";
 import CoverPage from "@/components/CoverPage";
 import InvitationContent from "@/components/InvitationContent";
+import MusicPlayer from "@/components/MusicPlayer";
 
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +11,7 @@ const Index = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background">
       <StarField />
+      <MusicPlayer />
 
       {/* Ambient glow orbs */}
       <div className="fixed inset-0 z-[1] pointer-events-none overflow-hidden">

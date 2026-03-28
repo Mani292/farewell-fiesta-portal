@@ -3,6 +3,7 @@ import PhotoGallery from "@/components/PhotoGallery";
 import EventDetails from "@/components/EventDetails";
 import CountdownTimer from "@/components/CountdownTimer";
 import MessageCard from "@/components/MessageCard";
+import RSVPForm from "@/components/RSVPForm";
 
 const FloatingPetal = ({ delay, x, size }: { delay: number; x: string; size: number }) => (
   <motion.div
@@ -196,6 +197,11 @@ const InvitationContent = () => {
           <div className="w-12 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent mx-auto mt-2" />
         </motion.div>
         <PhotoGallery />
+      </section>
+
+      {/* ─── RSVP ─── */}
+      <section className="py-6">
+        <RSVPForm />
       </section>
 
       {/* ─── FOOTER ─── */}
