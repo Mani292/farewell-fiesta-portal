@@ -3,7 +3,6 @@ import PhotoGallery from "@/components/PhotoGallery";
 import EventDetails from "@/components/EventDetails";
 import CountdownTimer from "@/components/CountdownTimer";
 import MessageCard from "@/components/MessageCard";
-import RSVPForm from "@/components/RSVPForm";
 
 const FloatingPetal = ({ delay, x, size }: { delay: number; x: string; size: number }) => (
   <motion.div
@@ -271,11 +270,6 @@ const Divider = () => (
     className="flex justify-center py-2"
   >
     <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
-  </motion.div>
-);
-
-export default InvitationContent;
-arent" />
   </motion.div>
 );
 

@@ -30,7 +30,7 @@ const PhotoGallery = () => {
           <img
             src={photos[0].src}
             alt="Niharika Akka"
-            className="w-full h-96 object-cover object-center block transition-transform duration-[2s] group-hover:scale-105"
+            className="w-full h-96 object-cover object-center block transition-transform duration-[2000ms] group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
           <motion.div
