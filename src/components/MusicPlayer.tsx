@@ -7,35 +7,44 @@ const MusicPlayer = ({ shouldPlay }: { shouldPlay?: boolean }) => {
     if (shouldPlay && audioRef.current) {
       const audio = audioRef.current;
       
-      const attemptPlay = () => {
-        audio.play().catch(() => {
-          console.log("Autoplay blocked, waiting for interaction...");
-          // Fallback for strict browsers: play on first touch/click
-          const startOnInteraction = () => {
-            audio.play().catch(e => console.error("Still blocked:", e));
-            window.removeEventListener("touchstart", startOnInteraction);
-            window.removeEventListener("mousedown", startOnInteraction);
-            window.removeEventListener("keydown", startOnInteraction);
-          };
+      const playMusic = async () => {
+        try {
+          // Some browsers need a slight delay
+          setTimeout(async () => {
+            if (audio) {
+              await audio.play();
+              console.log("Music started successfully");
+            }
+          }, 500);
+        } catch (err) {
+          console.log("Autoplay blocked, adding interaction listener");
           
-          window.addEventListener("touchstart", startOnInteraction);
-          window.addEventListener("mousedown", startOnInteraction);
-          window.addEventListener("keydown", startOnInteraction);
-        });
+          const startOnFirstInteraction = () => {
+            audio.play().catch(e => console.log("Still blocked:", e));
+            window.removeEventListener("click", startOnFirstInteraction);
+            window.removeEventListener("touchstart", startOnFirstInteraction);
+            window.removeEventListener("scroll", startOnFirstInteraction);
+          };
+
+          window.addEventListener("click", startOnFirstInteraction);
+          window.addEventListener("touchstart", startOnFirstInteraction);
+          window.addEventListener("scroll", startOnFirstInteraction);
+        }
       };
 
-      attemptPlay();
+      playMusic();
     }
   }, [shouldPlay]);
 
   return (
-    <audio
-      ref={audioRef}
-      src="https://cdn.pixabay.com/audio/2022/10/16/audio_9a304e292a.mp3" // Warm, acoustic pleasant track
-      loop
-      preload="auto"
-      style={{ display: "none" }}
-    />
+    <div className="fixed bottom-0 right-0 w-0 h-0 overflow-hidden pointer-events-none opacity-0">
+      <audio
+        ref={audioRef}
+        src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" // Very reliable and pleasant piano/orchestral track
+        loop
+        preload="auto"
+      />
+    </div>
   );
 };
 
