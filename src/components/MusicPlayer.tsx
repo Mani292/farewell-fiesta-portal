@@ -31,7 +31,7 @@ const MusicPlayer = ({ shouldPlay }: { shouldPlay?: boolean }) => {
   return (
     <audio
       ref={audioRef}
-      src="https://cdn.pixabay.com/audio/2022/03/15/audio_7306236b3d.mp3" // Soft, pleasant piano track
+      src="https://cdn.pixabay.com/audio/2022/10/16/audio_9a304e292a.mp3" // Warm, acoustic pleasant track
       loop
       preload="auto"
       style={{ display: "none" }}
