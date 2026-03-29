@@ -31,7 +31,7 @@ const MusicPlayer = ({ shouldPlay }: { shouldPlay?: boolean }) => {
   return (
     <audio
       ref={audioRef}
-      src="https://codeskulptor-demos.commondatastorage.googleapis.com/descent/background%20music.mp3"
+      src="https://cdn.pixabay.com/audio/2022/03/15/audio_7306236b3d.mp3" // Soft, pleasant piano track
       loop
       preload="auto"
       style={{ display: "none" }}
