@@ -73,9 +73,9 @@ const InvitationContent = () => {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="font-elegant italic text-sm text-muted-foreground mb-2 tracking-wide"
+          className="font-elegant italic text-sm text-muted-foreground mb-2 tracking-wide px-4 text-center"
         >
-          Dear Niharika Akka, you are warmly invited to our
+          Dear Niharika Akka, we cordially invite you to the farewell celebration we've organized in your honor.
         </motion.p>
 
         <motion.div
