@@ -199,11 +199,6 @@ const InvitationContent = () => {
         <PhotoGallery />
       </section>
 
-      {/* ─── RSVP ─── */}
-      <section className="py-6">
-        <RSVPForm />
-      </section>
-
       {/* ─── FOOTER ─── */}
       <section className="px-4 pb-20 pt-6">
         <motion.div
@@ -276,6 +271,11 @@ const Divider = () => (
     className="flex justify-center py-2"
   >
     <div className="w-24 h-px bg-gradient-to-r from-transparent via-primary/25 to-transparent" />
+  </motion.div>
+);
+
+export default InvitationContent;
+arent" />
   </motion.div>
 );
 

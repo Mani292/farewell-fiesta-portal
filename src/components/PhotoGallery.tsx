@@ -18,28 +18,29 @@ const PhotoGallery = () => {
     <div className="max-w-sm mx-auto px-4 space-y-4">
       {/* Hero photo */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.92 }}
+        initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.7, type: "spring" }}
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 1, type: "spring", bounce: 0.3 }}
         viewport={{ once: true, margin: "-40px" }}
-        className="relative group"
+        className="relative group cursor-pointer"
       >
-        <div className="absolute -inset-1 rounded-2xl bg-gradient-to-br from-primary/25 via-accent/12 to-primary/15 blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-700" />
-        <div className="relative overflow-hidden rounded-2xl border border-primary/20 photo-frame animate-pulse-border">
+        <div className="absolute -inset-2 rounded-2xl bg-gradient-to-br from-primary/20 via-accent/10 to-primary/15 blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
+        <div className="relative overflow-hidden rounded-2xl border border-primary/20 photo-frame animate-pulse-border shadow-md">
           <img
             src={photos[0].src}
             alt="Niharika Akka"
-            className="w-full h-80 object-cover object-center block"
+            className="w-full h-96 object-cover object-center block transition-transform duration-[2s] group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500" />
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
             viewport={{ once: true }}
-            className="absolute bottom-3 left-0 right-0 text-center"
+            className="absolute bottom-6 left-0 right-0 text-center px-4"
           >
-            <span className="font-display text-2xl text-primary drop-shadow-lg">
+            <span className="font-display text-3xl md:text-4xl text-rose-gradient drop-shadow-sm">
               Our beloved Niharika Akka ♥
             </span>
           </motion.div>
@@ -51,24 +52,35 @@ const PhotoGallery = () => {
         {photos.slice(1).map((photo, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, y: 30, rotate: (i % 2 === 0 ? -2 : 2) }}
+            initial={{ opacity: 0, y: 40, rotate: (i % 2 === 0 ? -3 : 3) }}
             whileInView={{ opacity: 1, y: 0, rotate: 0 }}
-            transition={{ duration: 0.5, delay: i * 0.1, type: "spring" }}
+            whileHover={{ 
+              scale: 1.05, 
+              rotate: (i % 2 === 0 ? 1 : -1),
+              zIndex: 20,
+              transition: { duration: 0.3 }
+            }}
+            transition={{ 
+              duration: 0.8, 
+              delay: i * 0.15, 
+              type: "spring",
+              bounce: 0.4 
+            }}
             viewport={{ once: true, margin: "-20px" }}
-            className="relative group"
+            className="relative group cursor-pointer"
           >
-            <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-br from-primary/15 to-accent/10 opacity-0 group-hover:opacity-100 transition-all duration-400 blur-sm" />
-            <div className="relative overflow-hidden rounded-xl border border-primary/15 group-hover:border-primary/35 photo-frame transition-colors duration-300">
+            <div className="absolute -inset-0.5 rounded-xl bg-gradient-to-br from-primary/30 to-accent/20 opacity-0 group-hover:opacity-100 transition-all duration-500 blur-md" />
+            <div className="relative overflow-hidden rounded-xl border border-primary/10 group-hover:border-primary/40 photo-frame transition-all duration-500 shadow-sm group-hover:shadow-xl">
               <img
                 src={photo.src}
                 alt={photo.caption}
-                className="w-full h-48 object-cover object-center block"
+                className="w-full h-48 object-cover object-center block transition-transform duration-700 group-hover:scale-110"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-40 group-hover:opacity-70 transition-opacity" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               {/* Caption on hover */}
-              <div className="absolute bottom-0 left-0 right-0 p-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <p className="font-elegant text-xs text-center text-foreground/80 italic">
+              <div className="absolute bottom-0 left-0 right-0 p-3 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                <p className="font-display text-lg text-center text-primary italic">
                   {photo.caption}
                 </p>
               </div>

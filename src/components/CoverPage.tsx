@@ -40,10 +40,10 @@ const CoverPage = ({ onOpen }: CoverPageProps) => {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ delay: 0.8, duration: 1, type: "spring", bounce: 0.3 }}
-        className="relative mb-4"
+        className="relative mb-4 w-full text-center px-4"
       >
         <div className="absolute inset-0 blur-[60px] bg-primary/10 rounded-full scale-150" />
-        <h1 className="relative font-display text-8xl md:text-[10rem] text-rose-gradient text-glow-pink leading-none">
+        <h1 className="relative font-display text-7xl md:text-[9rem] lg:text-[11rem] text-rose-gradient text-glow-pink leading-tight py-4">
           Niharika
         </h1>
       </motion.div>
